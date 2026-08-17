@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% block title %}Capture Asset | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>Capture Field Asset</h1><p>{{session.client.name}} • {{session.name}}</p></div></div>
+<form method="post" class="form panel"><div class="section"><h3>Asset Identification</h3><div class="formgrid">
+<label>Asset Name *<input name="asset_name" required value="{{asset.asset_name or ''}}"></label>
+<label>Description<input name="description" value="{{asset.description or ''}}"></label>
+<label>Tag Number<input name="tag_number" value="{{asset.tag_number or ''}}"></label>
+<label>Serial Number<input name="serial_number" value="{{asset.serial_number or ''}}"></label>
+<label>Model<input name="model" value="{{asset.model or ''}}"></label>
+<label>Location<input name="location" value="{{asset.location or ''}}"></label>
+</div></div>
+<div class="section"><h3>Accountability</h3><div class="formgrid">
+<label>User<input name="user_name" value="{{asset.user_name or ''}}"></label>
+<label>Custodian<input name="custodian" value="{{asset.custodian or ''}}"></label>
+<label>Verified By<input name="verified_by" value="{{asset.verified_by or ''}}"></label>
+</div></div>
+<div class="section"><h3>Verification</h3><div class="formgrid">
+<label>Status<select name="status">{% for x in ['Verified','Not Found','Untagged','Disposed','Transferred','Damaged','Pending Review'] %}<option {% if (asset.status or 'Verified')==x %}selected{% endif %}>{{x}}</option>{% endfor %}</select></label>
+<label>Condition<select name="condition">{% for x in ['Excellent','Good','Fair','Poor','Damaged','Beyond Repair','Unknown'] %}<option {% if (asset.condition or 'Good')==x %}selected{% endif %}>{{x}}</option>{% endfor %}</select></label>
+<label class="wide">Remarks<textarea name="remarks">{{asset.remarks or ''}}</textarea></label>
+</div></div>
+<div class="actions"><a class="btn gray" href="{{url_for('session_detail',session_id=session.id)}}">Cancel</a><button class="btn">Save Asset</button></div>
+</form>
+{% endblock %}

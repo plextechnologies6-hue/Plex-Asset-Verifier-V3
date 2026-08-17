@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} | Plex{% endblock %}
+{% block content %}
+<div class="pagehead">
+  <div><h1>{{ title }}</h1><p>Create a platform user and assign an access role.</p></div>
+</div>
+<form method="post" class="form panel">
+<div class="formgrid">
+<label>Full Name *<input name="full_name" required value="{{ user.full_name or '' }}"></label>
+<label>Email *<input type="email" name="email" required value="{{ user.email or '' }}"></label>
+<label>Password *<input type="password" name="password" required minlength="8"></label>
+<label>Role
+<select name="role">
+{% for r in ['Admin','Supervisor','Field Officer','Client Viewer'] %}
+<option>{{ r }}</option>
+{% endfor %}
+</select>
+</label>
+<label><input type="checkbox" name="active" checked> Active account</label>
+</div>
+<div class="actions">
+<a class="btn gray" href="{{ url_for('users') }}">Cancel</a>
+<button class="btn">Create User</button>
+</div>
+</form>
+{% endblock %}

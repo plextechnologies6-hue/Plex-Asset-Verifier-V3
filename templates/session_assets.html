@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Field Register | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>{{session.name}} — Field Register</h1><p>{{session.client.name}}</p></div><a class="btn" href="{{url_for('new_field_asset',session_id=session.id)}}">+ Capture Asset</a></div>
+<form class="search"><input name="q" value="{{q}}" placeholder="Search asset, tag, serial, location or custodian..."><button>Search</button></form>
+<div class="tablewrap"><table><thead><tr><th>Asset</th><th>Tag</th><th>Serial / Model</th><th>Location</th><th>User</th><th>Custodian</th><th>Status</th><th>Condition</th></tr></thead><tbody>
+{% for a in assets %}<tr><td><b>{{a.asset_name}}</b><br><small>{{a.description}}</small></td><td>{{a.tag_number}}</td><td>{{a.serial_number}}<br>{{a.model}}</td><td>{{a.location}}</td><td>{{a.user_name}}</td><td>{{a.custodian}}</td><td><span class="pill">{{a.status}}</span></td><td>{{a.condition}}</td></tr>
+{% else %}<tr><td colspan="8" class="empty">No field assets captured.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

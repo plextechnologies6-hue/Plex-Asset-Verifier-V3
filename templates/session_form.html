@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}New Session | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>New Verification Session</h1><p>Create an isolated workspace for one client assignment.</p></div></div>
+<form method="post" class="form panel"><div class="formgrid">
+<label>Client *<select name="client_id" required><option value="">Select client</option>{% for c in clients %}<option value="{{c.id}}" {% if session.client_id and session.client_id|int==c.id %}selected{% endif %}>{{c.name}}</option>{% endfor %}</select></label>
+<label>Session / Project Name *<input name="name" required value="{{session.name or ''}}" placeholder="2026 Asset Verification & FAR Reconciliation"></label>
+<label>Reference Number<input name="reference_no" value="{{session.reference_no or ''}}" placeholder="PLEX/CLIENT/2026/001"></label>
+<label>Status<select name="status"><option>Planning</option><option>Active</option><option>On Hold</option><option>Completed</option><option>Closed</option></select></label>
+<label>Start Date<input type="date" name="start_date" value="{{session.start_date or ''}}"></label>
+<label>End Date<input type="date" name="end_date" value="{{session.end_date or ''}}"></label>
+<label class="wide">Notes<textarea name="notes" placeholder="Scope, sites, departments or special instructions...">{{session.notes or ''}}</textarea></label>
+</div><div class="actions"><a class="btn gray" href="{{url_for('dashboard')}}">Cancel</a><button class="btn">Create Session</button></div></form>
+{% endblock %}

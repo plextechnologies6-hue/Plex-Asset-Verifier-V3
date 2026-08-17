@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Import FAR | Plex{% endblock %}
+{% block content %}
+<div class="narrow panel"><h1>Import Client FAR</h1><p><b>{{session.client.name}}</b> • {{session.name}}</p>
+<form method="post" enctype="multipart/form-data" class="upload"><input type="file" name="file" accept=".csv" required><button class="btn">Import FAR</button></form>
+<p class="note">This V2 release accepts CSV. A later release can add native Excel (.xlsx) import with configurable column mapping.</p>
+<h3>Common columns</h3><p>Asset Name, Description, Tag Number, Location, Serial Number, Model, User, Custodian.</p>
+<label><input type="checkbox" name="replace_existing" value="yes"> Replace existing FAR records in this session</label>
+</div>
+{% endblock %}

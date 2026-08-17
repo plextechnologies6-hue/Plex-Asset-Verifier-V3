@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block title %}{{title}} | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>{{title}}</h1><p>Create a reusable client profile.</p></div></div>
+<form method="post" class="form panel"><div class="formgrid">
+<label>Client Name *<input name="name" required value="{{client.name or ''}}"></label>
+<label>Client Code<input name="code" value="{{client.code or ''}}" placeholder="e.g. KIJABE-001"></label>
+<label>Contact Person<input name="contact_person" value="{{client.contact_person or ''}}"></label>
+<label>Email<input type="email" name="email" value="{{client.email or ''}}"></label>
+<label>Phone<input name="phone" value="{{client.phone or ''}}"></label>
+<label>Status<select name="status"><option>Active</option><option>Inactive</option></select></label>
+<label class="wide">Address<input name="address" value="{{client.address or ''}}"></label>
+<label class="wide">Notes<textarea name="notes">{{client.notes or ''}}</textarea></label>
+</div><div class="actions"><a class="btn gray" href="{{url_for('clients')}}">Cancel</a><button class="btn">Create Client</button></div></form>
+{% endblock %}

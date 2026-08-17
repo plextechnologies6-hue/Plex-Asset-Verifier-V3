@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Users | Plex{% endblock %}
+{% block content %}
+<div class="pagehead">
+  <div><h1>Users & Roles</h1><p>Manage access to the Plex platform.</p></div>
+  <a class="btn" href="{{ url_for('new_user') }}">+ New User</a>
+</div>
+<div class="tablewrap">
+<table>
+<thead><tr><th>User</th><th>Email</th><th>Role</th><th>Status</th><th>Created</th><th>Actions</th></tr></thead>
+<tbody>
+{% for u in users %}
+<tr>
+<td><b>{{ u.full_name }}</b></td>
+<td>{{ u.email }}</td>
+<td><span class="pill">{{ u.role }}</span></td>
+<td>{{ 'Active' if u.active else 'Inactive' }}</td>
+<td>{{ u.created_at.strftime('%Y-%m-%d') if u.created_at else '' }}</td>
+<td>
+<form method="post" action="{{ url_for('toggle_user', user_id=u.id) }}" style="display:inline">
+<button class="btn gray smallbtn">{{ 'Deactivate' if u.active else 'Activate' }}</button>
+</form>
+<form method="post" action="{{ url_for('reset_password', user_id=u.id) }}" style="display:inline">
+<input name="new_password" type="password" placeholder="New password" minlength="8" required class="miniinput">
+<button class="btn smallbtn">Reset</button>
+</form>
+</td>
+</tr>
+{% else %}
+<tr><td colspan="6" class="empty">No users yet.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<div class="panel">
+<h3>Role guidance</h3>
+<p><b>Admin:</b> full system access, users, clients, sessions, FAR and reports.</p>
+<p><b>Supervisor:</b> manage clients/sessions, import FAR, capture/review assets, reconcile and export.</p>
+<p><b>Field Officer:</b> capture and view field assets.</p>
+<p><b>Client Viewer:</b> read-only access to dashboard, clients, sessions and reconciliation results.</p>
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Reconciliation | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>{{session.name}} — FAR Reconciliation</h1><p>{{session.client.name}}</p></div></div>
+<div class="cards">
+<div class="card"><span>FAR Records</span><strong>{{stats.far}}</strong></div><div class="card"><span>Matched</span><strong>{{stats.matched}}</strong></div><div class="card"><span>Differences</span><strong>{{stats.differences}}</strong></div><div class="card"><span>FAR Not Found</span><strong>{{stats.not_found}}</strong></div><div class="card"><span>Field Only</span><strong>{{stats.field_only}}</strong></div>
+</div>
+<div class="tablewrap"><table><thead><tr><th>FAR Asset</th><th>FAR Tag / Serial</th><th>Field Record</th><th>Match Basis</th><th>Result</th><th>Differences</th></tr></thead><tbody>
+{% for f,a,basis,result,diffs in results %}<tr><td><b>{{f.asset_name}}</b><br>{{f.location}}</td><td>{{f.tag_number}}<br>{{f.serial_number}}</td><td>{% if a %}<b>{{a.asset_name}}</b><br>{{a.tag_number}} / {{a.serial_number}}<br>{{a.location}}{% else %}—{% endif %}</td><td>{{basis or '—'}}</td><td><span class="pill">{{result}}</span></td><td>{{diffs|join(', ') if diffs else 'None'}}</td></tr>
+{% endfor %}</tbody></table></div>
+{% if field_only %}<div class="panel"><h2>Field-Only Assets</h2><p>Physically captured but not matched to a FAR record.</p><table><thead><tr><th>Asset</th><th>Tag</th><th>Serial</th><th>Location</th></tr></thead><tbody>{% for a in field_only %}<tr><td>{{a.asset_name}}</td><td>{{a.tag_number}}</td><td>{{a.serial_number}}</td><td>{{a.location}}</td></tr>{% endfor %}</tbody></table></div>{% endif %}
+{% endblock %}

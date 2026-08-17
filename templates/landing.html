@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Plex Asset Verification Platform{% endblock %}
+{% block content %}
+<section class="landing-hero">
+  <div class="hero-glow glow-a"></div><div class="hero-glow glow-b"></div>
+  <div class="hero-copy">
+    <div class="eyebrow">PLEX TECHNOLOGIES LIMITED</div>
+    <h1>Asset verification that turns physical data into an <span>audit-ready register.</span></h1>
+    <p class="hero-lead">A professional workspace for client projects, fixed asset verification, FAR reconciliation and field accountability.</p>
+    <div class="hero-actions">
+      <a class="btn btn-lg" href="{{ url_for('login') }}">Sign in to platform</a>
+      <a class="ghost-link" href="#features">Explore capabilities →</a>
+    </div>
+    <div class="trust-row">
+      <div><b>Multi-client</b><small>Separate workspaces</small></div>
+      <div><b>FAR-ready</b><small>Reconciliation workflow</small></div>
+      <div><b>Field-first</b><small>Built for verification teams</small></div>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="panel-top"><span>PROJECT SNAPSHOT</span><span class="status-dot">● Active</span></div>
+    <div class="metric-grid">
+      <div class="metric"><small>FAR Records</small><strong>12,480</strong><span>Across active sessions</span></div>
+      <div class="metric"><small>Verified</small><strong>10,938</strong><span>87.6% completion</span></div>
+      <div class="metric"><small>Exceptions</small><strong>642</strong><span>Review required</span></div>
+      <div class="metric"><small>Sessions</small><strong>18</strong><span>Client assignments</span></div>
+    </div>
+    <div class="progress-label"><span>Current field verification</span><b>87.6%</b></div>
+    <div class="progress"><span style="width:87.6%"></span></div>
+    <div class="mini-list">
+      <div><span class="mini-icon">✓</span> Tag / serial matching</div>
+      <div><span class="mini-icon">✓</span> Location & custodian capture</div>
+      <div><span class="mini-icon">✓</span> Exception identification</div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="section-block">
+  <div class="section-heading"><div class="eyebrow">PLATFORM CAPABILITIES</div><h2>One workspace for the full verification lifecycle</h2><p>Designed around how Plex teams execute asset verification and FAR reconciliation projects.</p></div>
+  <div class="feature-grid">
+    <article class="feature-card"><div class="feature-icon">01</div><h3>Client Workspaces</h3><p>Create independent client profiles and keep each assignment securely separated.</p></article>
+    <article class="feature-card"><div class="feature-icon">02</div><h3>Verification Sessions</h3><p>Open a new engagement for every project, site or annual verification cycle.</p></article>
+    <article class="feature-card"><div class="feature-icon">03</div><h3>FAR Reconciliation</h3><p>Compare FAR records with physical findings and surface differences for review.</p></article>
+    <article class="feature-card"><div class="feature-icon">04</div><h3>Field Capture</h3><p>Capture tags, serials, locations, users, custodians, condition and verification status.</p></article>
+    <article class="feature-card"><div class="feature-icon">05</div><h3>Role-based Access</h3><p>Give administrators, supervisors, field officers and viewers the right level of access.</p></article>
+    <article class="feature-card"><div class="feature-icon">06</div><h3>Audit-ready Outputs</h3><p>Export field registers and build toward professional project reports.</p></article>
+  </div>
+</section>
+
+<section class="process-band">
+  <div class="section-heading light"><div class="eyebrow">HOW IT WORKS</div><h2>From client onboarding to verified FAR</h2></div>
+  <div class="process-grid">
+    <div><span>01</span><b>Create client</b><small>Set up the engagement owner and client profile.</small></div>
+    <div><span>02</span><b>Create session</b><small>Define the project reference, dates and scope.</small></div>
+    <div><span>03</span><b>Import FAR</b><small>Bring the baseline register into the session.</small></div>
+    <div><span>04</span><b>Verify in field</b><small>Capture physical asset and accountability details.</small></div>
+    <div><span>05</span><b>Reconcile</b><small>Identify matches, exceptions and field-only assets.</small></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div><div class="eyebrow">PLEX TECHNOLOGIES</div><h2>Ready to run the next assignment?</h2><p>Sign in to create a client workspace and launch your next verification session.</p></div>
+  <a class="btn btn-lg" href="{{ url_for('login') }}">Open platform</a>
+</section>
+{% endblock %}

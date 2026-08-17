@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% block title %}Dashboard | Plex{% endblock %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Plex Asset Verification Platform</h1>
+    <p>Manage clients, verification sessions, field data and FAR reconciliation from one workspace.</p>
+  </div>
+  <div><a class="btn" href="{{ url_for('new_session') }}">+ New Verification Session</a></div>
+</section>
+<div class="cards">
+<div class="card"><span>Clients</span><strong>{{clients}}</strong></div>
+<div class="card"><span>Active Sessions</span><strong>{{active_sessions}}</strong></div>
+<div class="card"><span>FAR Records</span><strong>{{far_count}}</strong></div>
+<div class="card"><span>Field Assets</span><strong>{{field_count}}</strong></div>
+<div class="card"><span>Verified</span><strong>{{verified}}</strong></div>
+<div class="card"><span>Untagged / Not Found</span><strong>{{untagged + not_found}}</strong></div>
+</div>
+<div class="grid2">
+<div class="panel"><h2>Recent Verification Sessions</h2>
+{% if recent_sessions %}
+<table><thead><tr><th>Client</th><th>Session</th><th>Status</th><th></th></tr></thead><tbody>
+{% for s in recent_sessions %}<tr><td>{{s.client.name}}</td><td><b>{{s.name}}</b><br><small>{{s.reference_no or ''}}</small></td><td><span class="pill">{{s.status}}</span></td><td><a href="{{url_for('session_detail',session_id=s.id)}}">Open</a></td></tr>{% endfor %}
+</tbody></table>
+{% else %}<div class="empty">No verification sessions created yet.</div>{% endif %}
+</div>
+<div class="panel"><h2>Recommended workflow</h2>
+<ol><li>Create the client.</li><li>Create a verification session for the assignment.</li><li>Import the client's FAR into that session.</li><li>Capture physical field assets.</li><li>Run reconciliation and investigate exceptions.</li><li>Export the verified field register.</li></ol>
+</div>
+</div>
+{% endblock %}

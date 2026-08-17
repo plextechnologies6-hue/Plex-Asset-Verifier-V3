@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block title %}Clients | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>Clients</h1><p>Each client can have multiple independent verification sessions.</p></div><a class="btn" href="{{url_for('new_client')}}">+ New Client</a></div>
+<div class="tablewrap"><table><thead><tr><th>Client</th><th>Code</th><th>Contact</th><th>Status</th><th>Sessions</th><th></th></tr></thead><tbody>
+{% for c in clients %}<tr><td><b>{{c.name}}</b><br><small>{{c.email or ''}}</small></td><td>{{c.code or '—'}}</td><td>{{c.contact_person or '—'}}</td><td><span class="pill">{{c.status}}</span></td><td>{{c.sessions|length}}</td><td><a href="{{url_for('client_detail',client_id=c.id)}}">Open</a></td></tr>
+{% else %}<tr><td colspan="6" class="empty">No clients yet.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

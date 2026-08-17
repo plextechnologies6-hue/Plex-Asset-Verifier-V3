@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Access Denied | Plex{% endblock %}
+{% block content %}
+<div class="loginwrap">
+  <div class="login-card">
+    <h1>Access Denied</h1>
+    <p>Your account does not have permission to perform this action.</p>
+    <a class="btn" href="{{ url_for('dashboard') }}">Return to Dashboard</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}{{session.name}} | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>{{session.name}}</h1><p>{{session.client.name}} {% if session.reference_no %}• {{session.reference_no}}{% endif %}</p></div><div><a class="btn" href="{{url_for('new_field_asset',session_id=session.id)}}">+ Capture Asset</a></div></div>
+<div class="cards">
+<div class="card"><span>FAR</span><strong>{{far_count}}</strong></div><div class="card"><span>Field Assets</span><strong>{{field_count}}</strong></div><div class="card"><span>Verified</span><strong>{{verified}}</strong></div><div class="card"><span>Not Found</span><strong>{{not_found}}</strong></div><div class="card"><span>Untagged</span><strong>{{untagged}}</strong></div>
+</div>
+<div class="panel">
+<div class="actions" style="justify-content:flex-start;flex-wrap:wrap">
+<a class="btn" href="{{url_for('import_far',session_id=session.id)}}">Import FAR</a>
+<a class="btn green" href="{{url_for('session_assets',session_id=session.id)}}">Field Register</a>
+<a class="btn" href="{{url_for('reconcile',session_id=session.id)}}">Reconcile</a>
+<a class="btn gray" href="{{url_for('export_field',session_id=session.id)}}">Export Field CSV</a>
+</div>
+</div>
+<div class="grid2">
+<div class="panel"><h2>Session Details</h2><p><b>Client:</b> {{session.client.name}}</p><p><b>Status:</b> {{session.status}}</p><p><b>Start:</b> {{session.start_date or '—'}}</p><p><b>End:</b> {{session.end_date or '—'}}</p><p><b>Notes:</b> {{session.notes or '—'}}</p></div>
+<div class="panel"><h2>Next actions</h2><ol><li>Import the client's FAR.</li><li>Capture/verify assets physically.</li><li>Run reconciliation.</li><li>Review differences and field-only assets.</li><li>Export the final field register.</li></ol></div>
+</div>
+{% endblock %}

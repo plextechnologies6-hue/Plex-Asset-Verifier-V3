@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}{{client.name}} | Plex{% endblock %}
+{% block content %}
+<div class="pagehead"><div><h1>{{client.name}}</h1><p>{{client.code or ''}}{% if client.contact_person %} • {{client.contact_person}}{% endif %}</p></div><a class="btn" href="{{url_for('new_session',client_id=client.id)}}">+ New Session</a></div>
+<div class="grid2"><div class="panel"><h2>Client Profile</h2><p><b>Email:</b> {{client.email or '—'}}</p><p><b>Phone:</b> {{client.phone or '—'}}</p><p><b>Address:</b> {{client.address or '—'}}</p><p><b>Status:</b> {{client.status}}</p></div>
+<div class="panel"><h2>Sessions</h2>{% if sessions %}<table><thead><tr><th>Session</th><th>Status</th><th></th></tr></thead><tbody>{% for s in sessions %}<tr><td>{{s.name}}<br><small>{{s.reference_no or ''}}</small></td><td>{{s.status}}</td><td><a href="{{url_for('session_detail',session_id=s.id)}}">Open</a></td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No sessions yet.</div>{% endif %}</div></div>
+{% endblock %}
